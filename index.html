@@ -13,5 +13,11 @@
         href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">authorize</a>
 </body>
 
+<script>
+    // Get the code from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const access_token = urlParams.get('access_token');
+
+</script>
 
 </html>
