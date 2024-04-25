@@ -16,7 +16,28 @@
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
+    // Exchange the code for an access token
+    const myHeaders = new Headers();
+    const formdata = new FormData();
+    formdata.append("client_id", "125585");
+    formdata.append("client_secret", "73c852a5a0215f5947cea3a2f906cbf5cccf044d");
+    formdata.append("code", code);
+    formdata.append("grant_type", "authorization_code");
 
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    var txt = undefined;
+    var json = undefined;
+
+    fetch("https://www.strava.com/oauth/token", requestOptions)
+        .then((response) => response.text())
+        .then((result) => parseResponse(result))
+        .catch((error) => console.error(error));
 
     
 
