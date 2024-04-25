@@ -39,7 +39,20 @@
         .then((result) => parseResponse(result))
         .catch((error) => console.error(error));
 
-    
+    function parseResponse(response) {
+        txt = response;
+        json = JSON.parse(txt);
+        console.log(json);
+        // console.log(json.access_token);
+
+        // Save the access token to local storage
+        // localStorage.setItem('access_token', json.access_token);
+        localStorage.setItem('refresh_token', json.refresh_token);
+
+        // redirect to the index page
+        window.location.href = 'http://localhost:8000/index.html?access_token=' + json.access_token;
+
+    }
 
 </script>
 
