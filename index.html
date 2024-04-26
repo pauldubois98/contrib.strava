@@ -72,6 +72,48 @@
     }
     get_data_from_page(1, access_token, contiue = false)
     // get_data_from_page(1, access_token, contiue = true)
+    function extract_date_dict(data) {
+        for (var i = 0; i < data.length; i++) {
+            var item = data[i];
+            // date
+            var date = item.start_date_local.substr(0, 10);
+            if(date == null || date == undefined){
+                date = item.start_date.substr(0, 10);
+            }
+            if(date == null || date == undefined){
+                continue;
+            }
+            // time
+            var time = item.moving_time;
+            if(time == null || time == undefined){
+                time = item.elapsed_time;
+            }
+            if(time == null || time == undefined){
+                time = 0;
+            }
+            // type
+            var type = item.type.toLowerCase();
+            if(type == null || type == undefined){
+                sport_type = item.time.toLowerCase();
+            }
+            if(type == null || type == undefined){
+                sport_type = "run";
+            }
+            if (date in date_data) {
+                date_data[date][sport_type].time += time;
+                date_data[date][sport_type].number += 1;
+            }
+            else {
+                date_data[date] = {
+                    sport_type: {
+                        time: time, 
+                        number: 1
+                    }
+                };
+            }
+        }
+        return date_data;
+    }
 
 
 
