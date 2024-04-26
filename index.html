@@ -15,35 +15,47 @@
             font-size: 14px;
         }
 
+
+        .nav-bar-container{
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.025);
+            border-bottom: 1px solid #f0f0f5;
+            line-height: 18px;
+            position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            width: 100%;
+        }
+
         .nav-bar {
             margin-right: auto;
             margin-left: auto;
             padding-left: 16px;
             padding-right: 16px;
             height: 55px;
-            min-width: 1248px;
+            min-width: 1216px;
         }
-
         @media (min-width: 1250px) {
-            .container {
+            .nav-bar {
                 width: 1248px;
             }
         }
 
         @media (min-width: 1200px) {
-            .container {
+            .nav-bar {
                 width: 1170px;
             }
         }
 
         @media (min-width: 992px) {
-            .container {
+            .nav-bar {
                 width: 970px;
             }
         }
 
         @media (min-width: 768px) {
-            .container {
+            .nav-bar {
                 width: 750px;
             }
         }
@@ -51,9 +63,11 @@
 </head>
 
 <body>
-    <div class="nav-bar">
-        Strava
+    <div class="nav-bar-container">
+        <div class="nav-bar">
+        </div>
     </div>
+    
     <h1>Welcome to my first web page!</h1>
     <p>This is a paragraph of text.</p>
     <p>This is another paragraph of text.</p>
