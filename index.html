@@ -102,7 +102,11 @@
             if (sport_type == null || sport_type == undefined) {
                 sport_type = "Run";
             }
-            console.log(date, time, sport_type);
+            if (!activities_list.includes(sport_type)) {
+                activities_list.push(sport_type);
+                activities_types.innerHTML += "<li class='activity-type'>" + sport_type + "</li>";
+            }
+            //// store item
             if (date in date_data) {
                 if (sport_type in date_data[date]) {
                     date_data[date][sport_type].time += time;
