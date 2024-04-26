@@ -1,0 +1,8 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-family: MaisonNeueThin, SegoeUI, -apple-system, system-ui, Arial, sans-serif, Symbol;
+    font-size: 14px;
+}
