@@ -9,6 +9,11 @@
 }
 
 @font-face {
+    font-family: "MaisonNeueThin";
+    src: url("fonts/MaisonNeueThin.ttf") format("truetype");
+}
+
+@font-face {
     font-family: "MaisonNeueItalic";
     src: url("fonts/MaisonNeueItalic.ttf") format("truetype");
 }
@@ -18,6 +23,10 @@
     src: url("fonts/MaisonNeueBoldItalic.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "MaisonNeueThinItalic";
+    src: url("fonts/MaisonNeueThinItalic.ttf") format("truetype");
+}
 
 @font-face {
     font-family: "SegoeUI";
