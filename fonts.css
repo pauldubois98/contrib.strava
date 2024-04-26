@@ -2,27 +2,30 @@
     font-family: "MaisonNeue";
     src: url("fonts/MaisonNeue.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "MaisonNeueBold";
     src: url("fonts/MaisonNeueBold.ttf") format("truetype");
 }
-
+@font-face {
+    font-family: "MaisonNeueLight";
+    src: url("fonts/MaisonNeueLight.ttf") format("truetype");
+}
 @font-face {
     font-family: "MaisonNeueThin";
     src: url("fonts/MaisonNeueThin.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "MaisonNeueItalic";
     src: url("fonts/MaisonNeueItalic.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "MaisonNeueBoldItalic";
     src: url("fonts/MaisonNeueBoldItalic.ttf") format("truetype");
 }
-
+@font-face {
+    font-family: "MaisonNeueLightItalic";
+    src: url("fonts/MaisonNeueLightItalic.ttf") format("truetype");
+}
 @font-face {
     font-family: "MaisonNeueThinItalic";
     src: url("fonts/MaisonNeueThinItalic.ttf") format("truetype");
@@ -32,17 +35,14 @@
     font-family: "SegoeUI";
     src: url("fonts/SegoeUI.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "SegoeUIBold";
     src: url("fonts/SegoeUIBold.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "SegoeUIItalic";
     src: url("fonts/SegoeUIItalic.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "SegoeUIBoldItalic";
     src: url("fonts/SegoeUIBoldItalic.ttf") format("truetype");
