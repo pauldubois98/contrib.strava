@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/png" href="strava-favicon.png" sizes="180x180">
+    <style>
+        #home_button {
+            background-color: white;
+            color: #fc5200;
+            border-color: #fc5200;
+        }
+        #home_button:hover {
+            background-color: whitesmoke;
+            border-color: #e34a00;
+            color: #e34a00
+        }
+    </style>
 </head>
 
 <body>
@@ -24,7 +36,11 @@
         </div>
     </div>
     <p>You should be redirected soon.</p>
-    <a href="index.html" class="button">Reconnect</a>
+    <a id="home_button" class="button" href="index.html">Home</a>
+    <a id="authorize_button" class="button"
+        href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">
+        Reconnect
+    </a>
 </body>
 
 <script>
@@ -50,10 +66,10 @@
     var txt = undefined;
     var json = undefined;
 
-    fetch("https://www.strava.com/oauth/token", requestOptions)
-        .then((response) => response.text())
-        .then((result) => parseResponse(result))
-        .catch((error) => console.error(error));
+    // fetch("https://www.strava.com/oauth/token", requestOptions)
+    //     .then((response) => response.text())
+    //     .then((result) => parseResponse(result))
+    //     .catch((error) => console.error(error));
 
     function parseResponse(response) {
         txt = response;
