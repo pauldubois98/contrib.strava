@@ -105,6 +105,7 @@
             if (!activities_list.includes(sport_type)) {
                 activities_list.push(sport_type);
                 activities_types.innerHTML += "<li class='activity-type'>" + sport_type + "</li>";
+                listActivitiesTypeClick();
             }
             //// store item
             if (date in date_data) {

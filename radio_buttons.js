@@ -6,10 +6,10 @@ function activityTypeClickListener(element) {
     element.target.setAttribute("selected", "true");
   }
 }
-function listeActivitiesTypeClick() {
+function listActivitiesTypeClick() {
   const activityTypes = document.querySelectorAll(".activity-type");
   activityTypes.forEach((activityType) => {
     activityType.onclick = activityTypeClickListener;
   });
 }
-listeActivitiesTypeClick();
+listActivitiesTypeClick();
