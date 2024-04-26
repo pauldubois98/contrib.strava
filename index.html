@@ -64,7 +64,7 @@
             result = await response.json();
             // append result.data to data
             data = data.concat(result);
-            // extract_date_dict(result);
+            extract_date_dict(result);
             // draw_graph();
             if (contiue && result.length > 0) {
                 await get_data_from_page(page + 1, token, contiue);
@@ -80,38 +80,46 @@
             var item = data[i];
             // date
             var date = item.start_date_local.substr(0, 10);
-            if(date == null || date == undefined){
+            if (date == null || date == undefined) {
                 date = item.start_date.substr(0, 10);
             }
-            if(date == null || date == undefined){
+            if (date == null || date == undefined) {
                 continue;
             }
             // time
             var time = item.moving_time;
-            if(time == null || time == undefined){
+            if (time == null || time == undefined) {
                 time = item.elapsed_time;
             }
-            if(time == null || time == undefined){
+            if (time == null || time == undefined) {
                 time = 0;
             }
             // type
-            var type = item.type.toLowerCase();
-            if(type == null || type == undefined){
-                sport_type = item.time.toLowerCase();
+            var sport_type = item.type;
+            if (sport_type == null || sport_type == undefined) {
+                sport_type = item.sport_type;
             }
-            if(type == null || type == undefined){
-                sport_type = "run";
+            if (sport_type == null || sport_type == undefined) {
+                sport_type = "Run";
             }
+            console.log(date, time, sport_type);
             if (date in date_data) {
-                date_data[date][sport_type].time += time;
-                date_data[date][sport_type].number += 1;
+                if (sport_type in date_data[date]) {
+                    date_data[date][sport_type].time += time;
+                    date_data[date][sport_type].number += 1;
+                }
+                else {
+                    date_data[date][sport_type] = {
+                        time: time,
+                        number: 1
+                    };
+                }
             }
             else {
-                date_data[date] = {
-                    sport_type: {
-                        time: time, 
-                        number: 1
-                    }
+                date_data[date] = {}
+                date_data[date][sport_type] = {
+                    time: time,
+                    number: 1
                 };
                 if (new Date(date) < min_date) {
                     min_date = new Date(date);
