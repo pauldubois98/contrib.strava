@@ -43,7 +43,8 @@
     const urlParams = new URLSearchParams(window.location.search);
     const access_token = urlParams.get('access_token');
 
-    var activities_list = ["Run", "Ride"]
+    var activities_list = ["Run", "Ride"];
+    var selected_activities_list = ["Run"];
     var data = [];
     var date_data = {};
     var min_date = new Date();

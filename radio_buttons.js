@@ -5,6 +5,14 @@ function activityTypeClickListener(element) {
   } else {
     element.target.setAttribute("selected", "true");
   }
+  // update selected_activities_list
+  const activityTypes = document.querySelectorAll(".activity-type");
+  selected_activities_list = [];
+  activityTypes.forEach((activityType) => {
+    if (activityType.getAttribute("selected") === "true") {
+      selected_activities_list.push(activityType.innerText);
+    }
+  });
 }
 function listActivitiesTypeClick() {
   const activityTypes = document.querySelectorAll(".activity-type");
