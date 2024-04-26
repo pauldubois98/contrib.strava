@@ -39,6 +39,7 @@
     will-change: background-color, color, border-color;
     font-weight: normal;
     font-family: MaisonNeue, SegoeUIBold, -apple-system, system-ui, Arial, sans-serif, Symbol;
+    margin: 2em;
 }
 
 .button:hover {
