@@ -9,6 +9,44 @@
     <link rel="stylesheet" href="button.css">
     <link rel="stylesheet" href="main.css">
     <link rel="icon" type="image/png" href="strava-favicon.png" sizes="180x180">
+    <style>
+        #activities_types {
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        #activities_types:first-child {
+            margin-left: 0;
+        }
+
+        .activity-type {
+            margin: 0px;
+            margin-left: -1px;
+            border: 1px solid #dfdfe8;
+            display: inline-block;
+            padding: 8px 15px;
+            color: #242428;
+            background-color: #fff;
+            transition: color 0.1s ease, border 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease, opacity 0.1s ease, -webkit-box-shadow 0.1s ease;
+            cursor: pointer;
+            list-style: none;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .activity-type:hover {
+            color: #000;
+            background-color: #f7f7fa;
+            text-decoration: none;
+        }
+
+        .activity-type[selected="true"] {
+            color: #fff;
+            background-color: #fc5200;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        }
+    </style>
 </head>
 
 <body>
@@ -27,6 +65,10 @@
         href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">
         Authorize Access
     </a>
+    <ul id="activities_types">
+        <li class="activity-type" selected="true">Run</li>
+        <li class="activity-type">Ride</li>
+    </ul>
     <p>This is a paragraph of text.</p>
     <p>This is another paragraph of text.</p>
 </body>
