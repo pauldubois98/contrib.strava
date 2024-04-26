@@ -45,8 +45,8 @@
         console.log(json);
         // console.log(json.access_token);
 
-        // Save the access token to local storage
-        // localStorage.setItem('access_token', json.access_token);
+        // Save the access_token & refresh_token to local storage
+        localStorage.setItem('access_token', json.access_token);
         localStorage.setItem('refresh_token', json.refresh_token);
 
         // redirect to the index page
