@@ -43,9 +43,12 @@
     const urlParams = new URLSearchParams(window.location.search);
     const access_token = urlParams.get('access_token');
 
+    var activities_list = ["Run", "Ride"]
     var data = [];
     var date_data = {};
-    var result = undefined;
+    var min_date = new Date();
+    var end_date = new Date();
+    var begin_date = new Date();
 
     async function get_data_from_page(page, token, contiue = true) {
         const myHeaders = new Headers();
@@ -110,6 +113,9 @@
                         number: 1
                     }
                 };
+                if (new Date(date) < min_date) {
+                    min_date = new Date(date);
+                }
             }
         }
         return date_data;
