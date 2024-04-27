@@ -277,6 +277,9 @@
         }
         return date_data;
     }
+    function no_details() {
+        details.innerHTML = "";
+    }
     function display_details(date_str){
         var date = new Date(date_str);
         date_details.innerText = date.toDateString();
