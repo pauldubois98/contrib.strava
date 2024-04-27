@@ -150,16 +150,6 @@
         }
         monthsGridTemplateColumns += (1 + Math.floor(c / 7) - last_col) * 20 + 'px ';
         months.style.gridTemplateColumns = monthsGridTemplateColumns;
-        function format_time(t) {
-            var tenths = Math.floor(t % 10);
-            t = Math.floor(t / 10);
-            var seconds = Math.floor(t % 60);
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-            var minutes = Math.floor(t / 60);
-            return minutes + ":" + seconds + '.' + tenths;
-        }
         // color squares
         date = new Date(begin_date);
         while (date <= end_date) {
@@ -285,6 +275,22 @@
     function no_details() {
         details.innerHTML = "";
     }
+    function format_time(t) {
+            var seconds = t % 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var minutes = Math.floor(t / 60) % 3600;
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            var hours = Math.floor(t / 3600);
+            if (hours > 0) {
+                return hours + "h " + minutes + "min " + seconds + "s";
+            } else {
+                return minutes + "min " + seconds + "s";
+            }
+        }
     function display_details(date_str){
         var details_html = "";
         // date
