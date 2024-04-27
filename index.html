@@ -286,8 +286,12 @@
         details.innerHTML = "";
     }
     function display_details(date_str){
+        var details_html = "";
+        // date
         var date = new Date(date_str);
-        date_details.innerText = date.toDateString();
+        details_html += "<p>Date: <strong>" + date.toDateString(); + "</strong></p>";
+
+        details.innerHTML = details_html;
     }
     function get_default_dates() {
         end_date = new Date();
