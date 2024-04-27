@@ -13,6 +13,7 @@ function activityTypeClickListener(element) {
       selected_activities_list.push(activityType.innerText);
     }
   });
+  draw_graph();
 }
 function listActivitiesTypeClick() {
   const activityTypes = document.querySelectorAll(".activity-type");
