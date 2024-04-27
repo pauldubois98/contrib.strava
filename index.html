@@ -164,7 +164,7 @@
                     }
                 }
                 if (total_number > 0) {
-                    var level = Math.round(1 + (total_time - mini) / (maxi - mini) * 5);
+                    var level = Math.round(1 + (total_time-mini) / (maxi - mini) * 4);
                     squares.insertAdjacentHTML('beforeend', `<li data-level="${level}" 
                     onpointerenter="display_details('${date_str}');" onpointerleave="no_details();"></li>`);
                 } else {
