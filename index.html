@@ -291,17 +291,30 @@
             return minutes + "min " + seconds + "s";
         }
     }
-    function display_details(date_str){
+    function display_details(date_str) {
         var details_html = "";
         // date
         var date = new Date(date_str);
         details_html += "<p>Date: <strong>" + date.toDateString(); + "</strong></p>";
         // activities
         if (date_str in date_data) {
+            var c = 0;
+            var total_time = 0;
+            var total_number = 0;
+            details_html += "<p>";
             for (const [key, value] of Object.entries(date_data[date_str])) {
                 if (selected_activities_list.includes(key)) {
-                    details_html += "<p>" + key + ": " + value.number + " activities, " + format_time(value.time) + "</p>";
+                    details_html += value.number + " " + key + " activities, <em>" + format_time(value.time) + "</em><br>";
+                } else {
+                    details_html += value.number + " " + key + " activities, " + format_time(value.time) + "<br>";
                 }
+                total_time += value.time;
+                total_number += value.number;
+                c++;
+            }
+            details_html += "</p>";
+            if (c > 1) {
+                details_html += "<p><em>Total: " + total_number + " activities, " + format_time(total_time) + "</em></p>";
             }
         } else {
             details_html += "<p>No activities</p>";
