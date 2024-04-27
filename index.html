@@ -35,7 +35,7 @@
         <li class="activity-type" selected="true">Run</li>
         <li class="activity-type">Ride</li>
     </ul>
-    
+
     <div id="graph">
         <div class="empty"></div>
         <div class="months"></div>
@@ -72,17 +72,116 @@
 </body>
 
 <script>
+    const squares = document.querySelector('.squares');
+    const months = document.querySelector('.months');
+
     // Get the code from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const access_token = urlParams.get('access_token');
 
     var activities_list = ["Run", "Ride"];
-    var selected_activities_list = ["Run"];
+    var selected_activities_list = ["Ride"];
     var data = [];
     var date_data = {};
     var min_date = new Date();
     var end_date = new Date();
     var begin_date = new Date();
+
+
+    function draw_graph() {
+        var column_size = undefined;
+        if (window.screen.width > 1100) {
+            column_size = 20;
+        } else if (window.screen.width > 850) {
+            column_size = 15;
+        } else if (window.screen.width > 600) {
+            column_size = 11;
+        } else {
+            column_size = 8;
+        }
+        today_date = new Date();
+        // extract min and max
+        squares.innerHTML = '';
+        if (begin_date.getDay() != 0) {
+            for (var i = 0; i < begin_date.getDay(); i++) {
+                squares.insertAdjacentHTML('beforeend', `<li data-level="none"></li>`);
+            }
+        }
+        date = new Date(begin_date);
+        mini = 1000000000;
+        maxi = 0;
+        current_month = date.toGMTString().split(' ')[2];
+        months.innerHTML = '';
+        months.insertAdjacentHTML('beforeend', `<li class="month">${current_month}</li>`);
+        var monthsGridTemplateColumns = "";
+        var c = 0;
+        var last_col = 0;
+        while (date <= end_date) {
+            if (date.toGMTString().split(' ')[2] != current_month) {
+                current_month = date.toGMTString().split(' ')[2];
+                months.insertAdjacentHTML('beforeend', `<li class="month">${current_month}</li>`);
+                monthsGridTemplateColumns += (1 + Math.floor(c / 7) - last_col) * column_size + 'px ';
+                last_col = 1 + Math.floor(c / 7);
+            }
+            c++;
+            date_str = date.toISOString().slice(0, 10);
+            if (date_str in date_data) {
+                var total_time = 0;
+                var total_number = 0;
+                for (const [key, value] of Object.entries(date_data[date_str])) {
+                    if (selected_activities_list.includes(key)) {
+                        total_time += value.time;
+                        total_number += value.number;
+                    }
+                }
+                if (total_time > maxi) {
+                    maxi = total_time;
+                }
+                if (total_time < mini) {
+                    mini = total_time;
+                }
+            }
+            date.setDate(date.getDate() + 1);
+        }
+        monthsGridTemplateColumns += (1 + Math.floor(c / 7) - last_col) * 20 + 'px ';
+        months.style.gridTemplateColumns = monthsGridTemplateColumns;
+        function format_time(t) {
+            var tenths = Math.floor(t % 10);
+            t = Math.floor(t / 10);
+            var seconds = Math.floor(t % 60);
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var minutes = Math.floor(t / 60);
+            return minutes + ":" + seconds + '.' + tenths;
+        }
+        // color squares
+        date = new Date(begin_date);
+        while (date <= end_date) {
+            date_str = date.toISOString().slice(0, 10);
+            if (date_str in date_data) {
+                var total_time = 0;
+                var total_number = 0;
+                for (const [key, value] of Object.entries(date_data[date_str])) {
+                    if (selected_activities_list.includes(key)) {
+                        total_time += value.time;
+                        total_number += value.number;
+                    }
+                }
+                var level = Math.round(1 + (total_time - mini) / (maxi - mini) * 5);
+                squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
+            } else {
+                var level = 0;
+                if (date > today_date) {
+                    level = -1;
+                } else {
+                    level = 0;
+                }
+                squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
+            }
+            date.setDate(date.getDate() + 1);
+        }
+    }
 
     async function get_data_from_page(page, token, contiue = true) {
         const myHeaders = new Headers();
@@ -99,7 +198,7 @@
             // append result.data to data
             data = data.concat(result);
             extract_date_dict(result);
-            // draw_graph();
+            draw_graph();
             if (contiue && result.length > 0) {
                 await get_data_from_page(page + 1, token, contiue);
             }
@@ -169,7 +268,7 @@
     }
     function get_default_dates() {
         end_date = new Date();
-        end_date.setTime(end_date.getTime()+(24*60*60*1000+500)) // add one day
+        end_date.setTime(end_date.getTime() + (24 * 60 * 60 * 1000 + 500)) // add one day
         begin_date = new Date();
         begin_date.setFullYear(end_date.getFullYear() - 1);
         while (begin_date.getDay() != 0) {
@@ -177,6 +276,7 @@
         }
     }
     get_default_dates();
+    draw_graph();
 
 
 
