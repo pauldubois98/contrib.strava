@@ -32,8 +32,8 @@
         Authorize Access
     </a>
     <ul id="activities_types">
-        <li class="activity-type" selected="true">Run</li>
-        <li class="activity-type">Ride</li>
+        <li class="activity-type">Run</li>
+        <li class="activity-type" selected="true">Ride</li>
     </ul>
 
     <div id="graph">
@@ -206,8 +206,6 @@
             alert("Invalid token");
         }
     }
-    get_data_from_page(1, access_token, contiue = false)
-    // get_data_from_page(1, access_token, contiue = true)
     function extract_date_dict(data) {
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
@@ -275,10 +273,10 @@
             begin_date.setDate(begin_date.getDate() + 1);
         }
     }
+
     get_default_dates();
     draw_graph();
-
-
+    get_data_from_page(1, access_token, contiue = true);
 
 </script>
 <script src="radio_buttons.js"></script>
