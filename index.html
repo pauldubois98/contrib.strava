@@ -284,7 +284,17 @@
             begin_date.setDate(begin_date.getDate() + 1);
         }
     }
-
+    year_input.onchange = function () {
+        begin_date.setFullYear(year_input.value);
+        end_date.setFullYear(year_input.value);
+        begin_date.setMonth(0);
+        begin_date.setDate(1);
+        end_date.setMonth(11);
+        end_date.setDate(31);
+        // end_date.setTime(end_date.getTime()+(24*60*60*1000)) // add one day
+        draw_graph();
+    }
+    
     get_default_dates();
     draw_graph();
     get_data_from_page(1, access_token, contiue = true);
