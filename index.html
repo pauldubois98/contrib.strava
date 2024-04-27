@@ -168,8 +168,18 @@
                         total_number += value.number;
                     }
                 }
-                var level = Math.round(1 + (total_time - mini) / (maxi - mini) * 5);
-                squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
+                if (total_number > 0) {
+                    var level = Math.round(1 + (total_time - mini) / (maxi - mini) * 5);
+                    squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
+                } else {
+                    var level = 0;
+                    if (date > today_date) {
+                        level = -1;
+                    } else {
+                        level = 0;
+                    }
+                    squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
+                }
             } else {
                 var level = 0;
                 if (date > today_date) {
