@@ -80,9 +80,19 @@
     const squares = document.querySelector('.squares');
     const months = document.querySelector('.months');
 
-    // Get the code from the URL
+    // Get the code from the URL or the local storage
     const urlParams = new URLSearchParams(window.location.search);
-    const access_token = urlParams.get('access_token');
+    var access_token = urlParams.get('access_token');
+    if (access_token == null) {
+        access_token = localStorage.getItem('access_token');
+        if (access_token == null) {
+            document.getElementById("authorize_button").style.display = "block";
+        } else {
+            document.getElementById("authorize_button").style.display = "none";
+        }
+    } else {
+        document.getElementById("authorize_button").style.display = "none";
+    }
 
     var activities_list = ["Run", "Ride"];
     var selected_activities_list = ["Ride"];
@@ -211,7 +221,9 @@
                 await get_data_from_page(page + 1, token, contiue);
             }
         } else {
-            alert("Invalid token");
+            // alert("Invalid token");
+            localStorage.removeItem('access_token');
+            document.getElementById("authorize_button").style.display = "block";
         }
     }
     function extract_date_dict(data) {
