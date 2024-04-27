@@ -276,21 +276,21 @@
         details.innerHTML = "";
     }
     function format_time(t) {
-            var seconds = t % 60;
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-            var minutes = Math.floor(t / 60) % 3600;
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            var hours = Math.floor(t / 3600);
-            if (hours > 0) {
-                return hours + "h " + minutes + "min " + seconds + "s";
-            } else {
-                return minutes + "min " + seconds + "s";
-            }
+        var seconds = t % 60;
+        if (seconds < 10) {
+            seconds = "0" + seconds;
         }
+        var minutes = Math.floor(t / 60) % 60;
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        var hours = Math.floor(t / 3600);
+        if (hours > 0) {
+            return hours + "h " + minutes + "min " + seconds + "s";
+        } else {
+            return minutes + "min " + seconds + "s";
+        }
+    }
     function display_details(date_str){
         var details_html = "";
         // date
