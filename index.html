@@ -12,6 +12,31 @@
     <link rel="stylesheet" href="graph.css">
     <link rel="icon" type="image/png" href="strava-favicon.png" sizes="180x180">
     <style>
+        ::selection {
+            background-color: #fc5200;
+            color: #fff;
+            text-shadow: none;
+        }
+
+        #year_input {
+            height: 42px;
+            width: 84px;
+            outline: 0;
+            padding-left: 10px;
+            padding-right: 10px;
+            transition: border-color 0.1s ease;
+            font-size: 14px;
+            height: 34px;
+            background-color: #fff;
+            border: 1px solid #dfdfe8;
+            color: #666;
+            line-height: 1.4em;
+            margin: 0;
+        }
+
+        #year_input:focus {
+            border: 1px solid #007FB6;
+        }
     </style>
 </head>
 
@@ -35,6 +60,7 @@
         <li class="activity-type">Run</li>
         <li class="activity-type" selected="true">Ride</li>
     </ul>
+    <input id="year_input" name="year" type="number" min="1900" max="2100" step="1" value="2024" />
 
     <div id="graph">
         <div class="empty"></div>
