@@ -1,0 +1,135 @@
+#graph {
+    margin: 1em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.days{
+    display: grid;
+    grid-gap: 5px;
+    grid-auto-rows: 15px;
+    margin-right: 0.2em;
+}
+
+.days li:nth-child(odd) {
+    visibility: hidden;
+}
+
+.months {
+    display: grid;
+    margin-bottom: 0.2em;
+}
+
+.days,.months li {
+    list-style-type: none;
+    color: #555;
+}
+
+.squares {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-rows: repeat(7, 15px);
+    grid-auto-flow: column;
+    grid-auto-columns: 15px;
+}
+@media (max-width: 1100px) {
+    .squares {
+        grid-gap: 3px;
+        grid-template-rows: repeat(7, 12px);
+        grid-auto-columns: 12px;
+    }
+    .days{
+        grid-gap: 3px;
+        grid-auto-rows: 12px;
+        font-size: 15px;
+    }
+    .months {
+        font-size: 15px;
+    }
+}
+@media (max-width: 850px) {
+    .squares {
+        grid-gap: 2px;
+        grid-template-rows: repeat(7, 9px);
+        grid-auto-columns: 9px;
+    }
+    .days{
+        grid-gap: 2px;
+        grid-auto-rows: 9px;
+        font-size: 11px;
+    }
+    .months {
+        font-size: 11px;
+    }
+}
+@media (max-width: 600px) {
+    .squares {
+        grid-gap: 2px;
+        grid-template-rows: repeat(7, 6px);
+        grid-auto-columns: 6px;
+    }
+    .days{
+        grid-gap: 2px;
+        grid-auto-rows: 6px;
+        font-size: 8px;
+    }
+    .months {
+        font-size: 8px;
+    }
+}
+
+.squares li {
+    list-style-type: none;
+    background-color: #e1e4e8;
+    border-radius: 2px;
+}
+
+.days-squares {
+    display: flex;
+}
+
+.squares li[data-level="none"] {
+    background-color: #ffffff00;
+}
+.squares li[data-level="-1"] {
+    background-color: #e8eaec;
+}
+.squares li[data-level="0"] {
+    background-color: #e1e4e8;
+}
+.squares li[data-level="1"] {
+    background-color: #FCC5A9;
+}
+.squares li[data-level="2"] {
+    background-color: #FC8D56;
+}
+.squares li[data-level="3"] {
+    background-color: #FC5200;
+}
+.squares li[data-level="4"] {
+    background-color: #CC4400;
+}
+.squares li[data-level="5"] {
+    background-color: #993300;
+}
+
+
+.legend {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25em;
+    padding-left: 0.5em;
+}
+
+#data-level-legend {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(6, 15px);
+    grid-template-rows: repeat(1, 15px);
+    grid-auto-flow: row;
+    grid-auto-rows: 15px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
