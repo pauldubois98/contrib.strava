@@ -46,3 +46,23 @@
     background-color: #e34a00;
     border-color: #e34a00;
 }
+
+#year_input {
+    height: 42px;
+    width: 84px;
+    outline: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: border-color 0.1s ease;
+    font-size: 14px;
+    height: 34px;
+    background-color: #fff;
+    border: 1px solid #dfdfe8;
+    color: #666;
+    line-height: 1.4em;
+    margin: 0;
+}
+
+#year_input:focus {
+    border: 1px solid #007FB6;
+}

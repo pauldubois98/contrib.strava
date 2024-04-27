@@ -6,3 +6,8 @@ body {
     font-family: MaisonNeueThin, SegoeUI, -apple-system, system-ui, Arial, sans-serif, Symbol;
     font-size: 14px;
 }
+::selection {
+    background-color: #fc5200;
+    color: #fff;
+    text-shadow: none;
+}
