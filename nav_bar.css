@@ -68,16 +68,15 @@
 }
 
 h1 {
-    color: #494950;
     transition: color 0.15s ease;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 18px;
     cursor: pointer;
     text-decoration: none;
+    color: black;
     font-weight: lighter;
-    font-family: MaisonNeueLight, SegoeUIBold, -apple-system, system-ui, Arial, sans-serif, Symbol;
+    font-family: MaisonNeue, SegoeUIBold, -apple-system, system-ui, Arial, sans-serif, Symbol;
 }
-
 h1:hover {
     color: #fc5200;
 }
