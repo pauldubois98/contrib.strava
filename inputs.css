@@ -47,6 +47,53 @@
     border-color: #e34a00;
 }
 
+
+#activities_types {
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+#activities_types:first-child {
+    margin-left: 0;
+}
+
+.activity-type {
+    margin: 0px;
+    margin-left: -1px;
+    border: 1px solid #dfdfe8;
+    display: inline-block;
+    padding: 8px 15px;
+    color: #242428;
+    background-color: #fff;
+    transition: color 0.1s ease, border 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease, opacity 0.1s ease, -webkit-box-shadow 0.1s ease;
+    cursor: pointer;
+    list-style: none;
+    font-size: 14px;
+    line-height: 1.45;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.activity-type:hover {
+    color: #000;
+    background-color: #f7f7fa;
+    text-decoration: none;
+}
+
+.activity-type[selected="true"] {
+    color: #fff;
+    background-color: #fc5200;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.line {
+    display: flex;
+}
+
 #year_input {
     height: 42px;
     width: 84px;
@@ -60,7 +107,7 @@
     border: 1px solid #dfdfe8;
     color: #666;
     line-height: 1.4em;
-    margin: 0;
+    margin: 1em;
 }
 
 #year_input:focus {

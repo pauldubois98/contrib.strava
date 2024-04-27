@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="nav_bar.css">
     <link rel="stylesheet" href="inputs.css">
-    <link rel="stylesheet" href="radio_buttons.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="graph.css">
     <link rel="icon" type="image/png" href="strava-favicon.png" sizes="180x180">
@@ -31,11 +30,14 @@
         href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">
         Authorize Access
     </a>
-    <ul id="activities_types">
-        <li class="activity-type">Run</li>
-        <li class="activity-type" selected="true">Ride</li>
-    </ul>
-    <input id="year_input" name="year" type="number" min="1900" max="2100" step="1" value="2024" />
+
+    <div class="line">
+        <ul id="activities_types">
+            <li class="activity-type">Run</li>
+            <li class="activity-type" selected="true">Ride</li>
+        </ul>
+        <input id="year_input" name="year" type="number" min="1900" max="2100" step="1" value="2024" />
+    </div>
 
     <div id="graph">
         <div class="empty"></div>
@@ -294,7 +296,7 @@
         // end_date.setTime(end_date.getTime()+(24*60*60*1000)) // add one day
         draw_graph();
     }
-    
+
     get_default_dates();
     draw_graph();
     get_data_from_page(1, access_token, contiue = true);
