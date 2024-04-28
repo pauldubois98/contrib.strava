@@ -26,10 +26,16 @@
             <img src="profile.svg" alt="profile" id="profile">
         </div>
     </div>
+    <!-- dev version -->
     <a id="authorize_button" class="button"
         href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">
         Authorize Access
     </a>
+    <!-- prod version -->
+    <!-- <a id="authorize_button" class="button"
+        href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=https://pauldubois98.github.io/contrib.strava/exchange_token.html&approval_prompt=force&scope=activity:read_all">
+        Authorize Access
+    </a> -->
 
     <div class="line">
         <ul id="activities_types">
@@ -174,7 +180,7 @@
                     }
                 }
                 if (total_number > 0) {
-                    var level = Math.round(1 + (total_time-mini) / (maxi - mini) * 4);
+                    var level = Math.round(1 + (total_time - mini) / (maxi - mini) * 4);
                     squares.insertAdjacentHTML('beforeend', `<li data-level="${level}" 
                     onpointerenter="display_details('${date_str}');" onpointerleave="no_details();"></li>`);
                 } else {
@@ -355,7 +361,10 @@
 
     get_default_dates();
     draw_graph();
-    get_data_from_page(1, access_token, contiue = true);
+    // dev version (save requests)
+    get_data_from_page(1, access_token, contiue = false);
+    // prod version (request heavy)
+    // get_data_from_page(1, access_token, contiue = true);
 
 </script>
 <script src="radio_buttons.js"></script>
