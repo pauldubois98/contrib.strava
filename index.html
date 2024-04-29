@@ -402,7 +402,7 @@
     get_default_dates();
     draw_graph();
     // dev version (save requests)
-    get_data_from_page(1, access_token, contiue = false);
+    recover_access_token().then(() => get_data_from_page(1, access_token, contiue = false));
     // prod version (request heavy)
     // get_data_from_page(1, access_token, contiue = true);
 
