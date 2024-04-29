@@ -87,8 +87,7 @@
     function parseResponse(response) {
         txt = response;
         json = JSON.parse(txt);
-        console.log(json);
-        // console.log(json.access_token);
+        // console.log(json);
 
         // Save the access_token & refresh_token to local storage
         localStorage.setItem('access_token', json.access_token);
