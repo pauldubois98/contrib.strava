@@ -122,15 +122,22 @@
         }
     }
     async function recover_access_token() {
-    if (access_token == null) {
-        access_token = localStorage.getItem('access_token');
         if (access_token == null) {
-            document.getElementById("authorize_button").style.display = "block";
+            // try to recover access token from local storage
+            access_token = localStorage.getItem('access_token');
+            if (access_token == null) {
+                await refresh_token();
+            } else {
+                // check if token is still valid
+                if (Number(localStorage.getItem('expires_at')) < Date.now()) {
+                    await refresh_token();
+                } else {
+                    document.getElementById("authorize_button").style.display = "none";
+                }
+            }
         } else {
             document.getElementById("authorize_button").style.display = "none";
         }
-    } else {
-        document.getElementById("authorize_button").style.display = "none";
     }
 
     var activities_list = ["Run", "Ride"];
