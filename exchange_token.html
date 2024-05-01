@@ -44,15 +44,15 @@
     <div class="line">
         <a id="home_button" class="button" href="index.html">Home</a>
         <!-- dev version -->
-        <a id="authorize_button" class="button"
+        <!-- <a id="authorize_button" class="button"
             href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">
             Reconnect
-        </a>
+        </a> -->
         <!-- prod version -->
-        <!-- <a id="authorize_button" class="button"
+        <a id="authorize_button" class="button"
             href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=https://pauldubois98.github.io/contrib.strava/exchange_token.html&approval_prompt=force&scope=activity:read_all">
             Reconnect
-        </a> -->
+        </a>
     </div>
 </body>
 
@@ -87,18 +87,18 @@
     function parseResponse(response) {
         txt = response;
         json = JSON.parse(txt);
-        console.log(json);
-        // console.log(json.access_token);
+        // console.log(json);
 
         // Save the access_token & refresh_token to local storage
         localStorage.setItem('access_token', json.access_token);
         localStorage.setItem('refresh_token', json.refresh_token);
+        localStorage.setItem('expires_at', json.expires_at);
 
         // redirect to the index page
         // dev version:
-        window.location.href = 'http://localhost:8000/index.html?access_token=' + json.access_token;
+        // window.location.href = 'http://localhost:8000/index.html?access_token=' + json.access_token;
         // prod version:
-        // window.location.href = 'https://pauldubois98.github.io/contrib.strava/index.html?access_token=' + json.access_token;
+        window.location.href = 'https://pauldubois98.github.io/contrib.strava/index.html?access_token=' + json.access_token;
     }
 
 </script>

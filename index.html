@@ -27,15 +27,15 @@
         </div>
     </div>
     <!-- dev version -->
-    <a id="authorize_button" class="button"
+    <!-- <a id="authorize_button" class="button"
         href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=http://localhost:8000/exchange_token.html&approval_prompt=force&scope=activity:read_all">
         Authorize Access
-    </a>
+    </a> -->
     <!-- prod version -->
-    <!-- <a id="authorize_button" class="button"
+    <a id="authorize_button" class="button"
         href="http://www.strava.com/oauth/authorize?client_id=125585&response_type=code&redirect_uri=https://pauldubois98.github.io/contrib.strava/exchange_token.html&approval_prompt=force&scope=activity:read_all">
         Authorize Access
-    </a> -->
+    </a>
 
     <div class="line">
         <ul id="activities_types">
@@ -89,15 +89,55 @@
     // Get the code from the URL or the local storage
     const urlParams = new URLSearchParams(window.location.search);
     var access_token = urlParams.get('access_token');
-    if (access_token == null) {
-        access_token = localStorage.getItem('access_token');
-        if (access_token == null) {
+    async function refresh_token() {
+        var refresh_token = localStorage.getItem('refresh_token');
+        if (refresh_token == null) {
             document.getElementById("authorize_button").style.display = "block";
+        } else {
+            // Exchange the refresh token for a new access token
+            const myHeaders = new Headers();
+            const formdata = new FormData();
+            formdata.append("client_id", "125585");
+            formdata.append("client_secret", "4a32e64b41ac21c25a974bfe7c623e4b36f977fb");
+            formdata.append("refresh_token", refresh_token);
+            formdata.append("grant_type", "refresh_token");
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: formdata,
+                redirect: "follow"
+            };
+            response = await fetch("https://www.strava.com/oauth/token", requestOptions);
+            if (response.status == 200) {
+                result = await response.json();
+                access_token = result.access_token;
+                localStorage.setItem('access_token', access_token);
+                localStorage.setItem('refresh_token', result.refresh_token);
+                localStorage.setItem('expires_at', result.expires_at);
+                console.log("Access token refreshed", access_token);
+                document.getElementById("authorize_button").style.display = "none";
+            } else {
+                document.getElementById("authorize_button").style.display = "block";
+            }
+        }
+    }
+    async function recover_access_token() {
+        if (access_token == null) {
+            // try to recover access token from local storage
+            access_token = localStorage.getItem('access_token');
+            if (access_token == null) {
+                await refresh_token();
+            } else {
+                // check if token is still valid
+                if (Number(localStorage.getItem('expires_at')) < Date.now()) {
+                    await refresh_token();
+                } else {
+                    document.getElementById("authorize_button").style.display = "none";
+                }
+            }
         } else {
             document.getElementById("authorize_button").style.display = "none";
         }
-    } else {
-        document.getElementById("authorize_button").style.display = "none";
     }
 
     var activities_list = ["Run", "Ride"];
@@ -362,7 +402,7 @@
     get_default_dates();
     draw_graph();
     // dev version (save requests)
-    get_data_from_page(1, access_token, contiue = false);
+    recover_access_token().then(() => get_data_from_page(1, access_token, contiue = true));
     // prod version (request heavy)
     // get_data_from_page(1, access_token, contiue = true);
 
